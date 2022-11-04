@@ -89,7 +89,7 @@ public class VehicleController {
 	@PostMapping("/savevehicle")
 	public String saveVehicle(Vehicle vehicle,Float on_road_price) {
 		vehicleService.saveNewVehicle(vehicle,on_road_price);
-		return "redirect:/vehicle";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/addVehicle")
@@ -111,7 +111,7 @@ public class VehicleController {
 	public String updateEmp(@ModelAttribute Vehicle v, HttpSession session,Float on_road_price) {
 		vehicleService.saveNewVehicle(v,on_road_price);
 		session.setAttribute("msg", "Vehicle Data Updated Sucessfully..");
-		return "redirect:/vehicle";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/deleteVehicle/{id}")
@@ -119,7 +119,7 @@ public class VehicleController {
 
 		vehicleService.deleteVehicle(id);
 		session.setAttribute("msg", "Vehicle Data Delete Sucessfully..");
-		return "redirect:/vehicle";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/orderYearDesc")

@@ -54,7 +54,7 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public Vehicle updateVehicle(Vehicle vehicle, Integer id) throws ResourceNotFoundException {
 		Vehicle existingVehicle = repo.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException());
+				.orElseThrow(() -> new ResourceNotFoundException("Id not found"));
 		existingVehicle.setMake(vehicle.getMake());
 		existingVehicle.setModel(vehicle.getModel());
 		existingVehicle.setYear(vehicle.getYear());
@@ -71,7 +71,7 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public void deleteVehicle(Integer id) throws ResourceNotFoundException {
 		Vehicle existingVehicle = repo.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException());
+				.orElseThrow(() -> new ResourceNotFoundException("Id not found"));
 		repo.deleteById((int) id);
 	}
 
