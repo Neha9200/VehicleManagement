@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Add a new Vehicle</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+
+<style>
+body {
+	background-color: rgb(211, 215, 207);
+	font-family: "Brush Script MT", cursive;
+	font-size: 20px;
+	margin:40px;
+}
+
+img {
+	width:50%;
+	height:880px;
+	opacity:0.8;
+}
+</style>
+</head>
+<body>
+<img src="/images/cars1.jpg">
+	<div align="right" style="top:230px; position:absolute; left:1200px;" >
+		<h1>Add a new Vehicle</h1>
+		<br />
+		<form action="#" th:action="@{/savevehicle}" th:object="${vehicle}"
+			method="post">
+
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Year:</td>
+					<td><input type="text" th:field="*{year}" /></td>
+				</tr>
+				<tr>
+					<td>Make:</td>
+					<td><input type="text" th:field="*{make}" /></td>
+				</tr>
+				<tr>
+					<td>Model:</td>
+					<td><input type="text" th:field="*{model}" /></td>
+				</tr>
+				<tr>
+					<td>Base Price:</td>
+					<td><input type="text" th:field="*{base_price}" /></td>
+				</tr>
+				<tr>
+					<td>Insurance:</td>
+					<td><input type="text" th:field="*{insurance}" /></td>
+				</tr>
+				<tr>
+					<td>Reg Fee:</td>
+					<td><input type="text" th:field="*{reg_fee}" /></td>
+				</tr>
+				<tr>
+					<td>Road Tax:</td>
+					<td><input type="text" th:field="*{road_tax}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+				<!--  <tr>
+                    <td colspan="2"> <a class="btn btn-primary" th:href="@{/vehicle}"
+						role="button">Back</a> </td>
+                </tr> -->
+			</table>
+		</form>
+	</div>
+</body>
+</html>

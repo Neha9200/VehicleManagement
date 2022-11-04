@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Zesto Vehicles</title>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+
+<style>
+body {
+	background-color: rgb(211, 215, 207);
+	font-family: "Brush Script MT", cursive;
+	font-size: 20px;
+	color: black;
+	
+}
+
+img {
+	width:1840px;
+	height:900px;
+	opacity:0.3;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="vehicle"><i class="fas fa-home"></i> Zesto Vehicles</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto"></ul>
+		</div>
+	</nav>
+	<img src="/images/cars3.png">
+	
+	<div align="center" class="container" style="top:100px; position:absolute; left:300px;" >
+		<!-- 		<h1 th:text="${keyword}">${keyword}</h1>
+ -->
+ 		<h1>Searched Vehicle</h1>
+		<br /> <br />
+
+		<table border="2" cellpadding="10" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Sl No.</th>
+					<th>Year <!-- <a class="btn btn-primary" th:href="@{/orderYear}"
+						role="button">Order</a> -->
+					</th>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Base Price</th>
+					<th>Reg Fee</th>
+					<th>Insurance</th>
+					<th>Road Tax</th>
+					<th>On Road Price</th>
+<!--  					<th>Actions</th> -->
+				</tr>
+			</thead>
+
+			<tbody>
+					<tr th:each="vehicles, vStat : ${vehicles}">
+					<td th:text="${vStat.count}"></td>
+					<td th:text="${vehicles.year}"></td>
+					<td th:text="${vehicles.make}"></td>
+					<td th:text="${vehicles.model}"></td>
+					<td th:text="${vehicles.base_price}"></td>
+					<td th:text="${vehicles.reg_fee}"></td>
+					<td th:text="${vehicles.insurance}"></td>
+					<td th:text="${vehicles.road_tax}"></td>
+					<td th:text="${vehicles.base_price}+${vehicles.reg_fee}+${vehicles.insurance}+${vehicles.road_tax}"></td>
+					<!--<td th:text="${v.onRoad_price}"></td> -->
+					<!-- <td><a th:href="@{'/updateVehicle/' + ${vehicles.id}}">Update</a>
+					&nbsp;&nbsp;&nbsp; <a th:href="@{'/deleteVehicle/' + ${vehicles.id}}">Delete</a></td> -->
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

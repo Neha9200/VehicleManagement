@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Zesto Vehicles</title>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+	integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+body {
+  background-image: linear-gradient(to right, rgb(211, 215, 207), #e1cceb);
+	font-family: "Brush Script MT", cursive;
+	font-size: 20px;
+	color: black;
+}
+
+#h {
+	margin-top: 70px;
+	color: black;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="vehicle"><i class="fas fa-home"></i> Zesto Vehicles</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+
+				<li class="nav-item active"><a class="nav-link"
+					href="/login"><i class="fas fa-user-shield"></i> Admin</a></li>
+				<li class="nav-item active right" style="background-color: #a0a0aa; margin-left: 1400px;"><a class="nav-link"
+					href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<div th:if=${session.msg}>
+		<div class="alert alert-success" role="alert" th:text="${session.msg}">
+		</div>
+		<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+	</div>
+
+	<br />
+	<br />
+	<div align="center" class="container">
+		<h1>Vehicle List</h1>
+		<!-- 		<h1 th:text="${vehicles}"></h1> -->
+		<br /> <br />
+
+		<form th:action="@{/search}">
+			Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" /> &nbsp;
+				 <input type="submit" value="Search" />	&nbsp; 
+				 <input type="button" value="Clear" id="btnClear" onclick="clearSearch()"/>  
+		</form>
+		<br /> <br />
+		<script type="text/javascript">
+			function clearSearch() {
+				window.location = "[[@{/vehicle}]]";
+			}
+		</script>
+	</div>
+
+		<table border="1" class="table table-striped" style="width:80%;margin-left:180px;">
+			<thead>
+				<tr>
+					<th>Sl No.</th>
+					<th>Year <a class="btn btn-secondary"
+						th:href="@{/orderYearDesc}" role="button"><i
+							class="fas fa-caret-up"></i></a> <a class="btn btn-secondary"
+						th:href="@{/orderYearAsc}" role="button"><i
+							class="fas fa-caret-down"></i></a>
+					</th>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Base Price</th>
+					<th>Reg Fee</th>
+					<th>Insurance</th>
+					<th>Road Tax</th>
+					<th>On Road Price</th>
+<!-- 					<th>Actions</th> -->
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="v, vStat : ${vehicles}">
+					<td th:text="${vStat.count}"></td>
+					<td th:text="${v.year}"></td>
+					<td th:text="${v.make}"></td>
+					<td th:text="${v.model}"></td>
+					<td th:text="${v.base_price}"></td>
+					<td th:text="${v.reg_fee}"></td>
+					<td th:text="${v.insurance}"></td>
+					<td th:text="${v.road_tax}"></td>
+		<!-- 			<td
+						th:text="${v.base_price}+${v.reg_fee}+${v.insurance}+${v.road_tax}+.00"></td>
+ -->										<td th:text="${v.onRoad_price}"></td>
+ 
+					<!-- <td><a th:href="@{'/updateVehicle/' + ${v.id}}"><i class="far fa-edit"></i></a>
+						&nbsp;&nbsp;&nbsp; 
+						<a th:href="@{'/deleteVehicle/' + ${v.id}}" style="color:red;"><i class="fas fa-trash"></i></a></td> -->
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>

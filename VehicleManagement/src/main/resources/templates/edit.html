@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>Edit Vehicle</title>
+<style>
+body {
+	background-color: rgb(211, 215, 207);
+}
+
+img {
+	width: 50%;
+	height: 780px;
+	opacity: 0.8;
+	float: right;
+	margin:40px;
+}
+
+.form {
+	background-color: transparent;
+	border-radius: 5px;
+}
+
+input[type="text"] {
+    width: 350px;
+    opacity:0.8;
+}
+
+.text-center {
+    margin-right: 50px;
+    color:#254a14c7;
+    font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="/vehicle">Zesto Vehicles</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto"></ul>
+		</div>
+	</nav>
+
+	<img src="/images/cars.jpg">
+
+	<br />
+	<br />
+
+
+	<div class="container" align="left"
+		style="top: 180px; position: absolute; right: 800px;">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+
+				<h4 class="text-center">Edit Vehicle</h4>
+
+				<form th:action="@{/update}" method="post" th:object="${vehicle}">
+
+					<input type="hidden" th:value="${vehicle.id}" name="id">
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Year</label> <input type="text" class="form-control"
+							name="year" th:value="${vehicle.year}">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Model</label> <input type="text" class="form-control"
+							name="model" th:value="${vehicle.model}">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Make</label> <input type="text" class="form-control"
+							name="make" th:value="${vehicle.make}">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Base Price</label> <input type="text" class="form-control"
+							name="base_price" th:value="${vehicle.base_price}">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Insurance</label> <input type="text" class="form-control"
+							name="insurance" th:value="${vehicle.insurance}">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Reg Fee</label> <input type="text" class="form-control"
+							name="reg_fee" th:value="${vehicle.reg_fee}">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Road Tax</label> <input type="text" class="form-control"
+							name="road_tax" th:value="${vehicle.road_tax}">
+					</div>
+
+					<button class="btn btn-primary btn-block" style="width:250px; margin-left: 90px;">Submit</button>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
